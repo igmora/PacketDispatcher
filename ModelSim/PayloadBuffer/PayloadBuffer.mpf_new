@@ -471,3 +471,4 @@ DEBUGDATABASE_CustomDoubleClick =
 DEBUGARCHIVE_DoubleClick = Edit
 DEBUGARCHIVE_CustomDoubleClick = 
 Project_Major_Version = 10
+Project_Minor_Version = 5

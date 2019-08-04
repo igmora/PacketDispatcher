@@ -1,5 +1,3 @@
-import PayloadBus::*;
-
 package PayloadBus;
 
     typedef logic [11:0] Address_t;

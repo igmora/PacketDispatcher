@@ -20,13 +20,14 @@ module PayloadBuffer(
     MemEntry_t memRdData, memWrData;
     Address_t freePtr, memRdAddressReg, memWrAddressReg;
     Address_t memRdAddress, memWrAddress;
-    Address_t lastPtr;
     logic memWriteEnable;
-
-    assign wrBus.address = freePtr;
+    Address_t nextFreePtr;
+    
     assign rdBus.byteCount = memRdData.byteCount;
     assign rdBus.data = memRdData.data;
     assign rdBus.isLast = memRdData.isLast;
+    
+    assign nextFreePtr = wrBus.isLast ? freePtr : memRdData.nextPtr;
 
     always_comb begin
         // If the read mode is selected
@@ -36,19 +37,28 @@ module PayloadBuffer(
             // is not rewritten every time. This may save some energy.
             memWrData = memRdData;
             
+            // Set write address such that we update the data
+            // that was read on the previous CC
             memWrAddress <= memRdAddressReg;
  
-            // At the first stage of the read mode
-            // we use the address that the other device passed
+            // If we do the read of the first block in the chain
             if (rdBus.isFirst) begin
+                // We do not write anything at this first stage
                 memWriteEnable <= 'b0;
+                
+                // At the first stage of the read mode
+                // we use the address received from the bus
                 memRdAddress <= rdBus.address;
             end
             
-            // For each next stage we use the address obtained from the previous read.
+            // For each next stage .
             // That is how we walk through the linked list.
             else begin
+                // 
                 memWriteEnable <= enable;
+                
+                // Use the address obtained from the previous read
+                // to walk through the linked list 
                 memRdAddress <= memRdData.nextPtr;
 
                 if (memRdData.ttl == 'b0)
@@ -62,13 +72,13 @@ module PayloadBuffer(
         // If the write mode is selected
         else begin
             memWriteEnable <= enable;
-            memWrData.nextPtr <= memWrAddressReg;
+            memWrData.nextPtr <= memRdAddressReg;
             memWrData.ttl <= wrBus.ttl;
             memWrData.data <= wrBus.data;
             memWrData.isLast <= wrBus.isLast;
             memWrData.byteCount <= wrBus.byteCount;
-            memWrAddress <= freePtr;
-            memRdAddress <= reset ? 'b0 : memRdData.nextPtr;
+            memWrAddress <= nextFreePtr;
+            memRdAddress <= nextFreePtr;
         end
     end
 
@@ -80,18 +90,18 @@ module PayloadBuffer(
         end
         
         // Non-reset behavior
-        else begin
-            if (enable) begin
-                memRdAddressReg <= memRdAddress;
-                memWrAddressReg <= memWrAddress;
-                if (readWrite) begin
-                    freePtr <= memRdData.nextPtr;
-                end
+        else if (enable) begin
+            // Save the previous value of memRdAddress
+            memRdAddressReg <= memRdAddress;
 
-                else begin
-                    if (memRdData.ttl == 'b0) begin
-                        freePtr <= memRdAddressReg;
-                    end
+            if (readWrite) begin
+                freePtr <= memRdData.nextPtr;
+                wrBus.address <= nextFreePtr;
+            end
+
+            else begin
+                if (memRdData.ttl == 'b0) begin
+                    freePtr <= memRdAddressReg;
                 end
             end
         end

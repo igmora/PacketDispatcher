@@ -33,6 +33,7 @@ module PayloadBuffer_tb();
             wrBus.byteCount = byteCount;
             @(posedge clock);
         end
+        @(posedge clock);
         address = wrBus.address;
         enable = 1'b0;
     endtask
@@ -52,6 +53,7 @@ module PayloadBuffer_tb();
             @(posedge clock);
         end 
         while (rdBus.isLast !== 1'b1);
+        @(posedge clock);
         enable = 1'b0;
     endtask
     
@@ -75,11 +77,10 @@ module PayloadBuffer_tb();
         Reset();
         Write({1, 2, 3, 4}, 1, 3, writeAddress);
         Read(writeAddress, readNodes1);
-        @(posedge clock);
         Write({10, 20, 30, 40}, 1, 3, dummyAddress);
         Read(writeAddress, readNodes2);
         Write({10, 20, 30, 40}, 1, 3, dummyAddress);
-        $finish;
+        //$finish;
     end
     
     always begin
