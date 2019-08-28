@@ -6,6 +6,7 @@
 ### AlteraQuartusII ###
 Quartus/**/output_files
 Quartus/**/incremental_db
+Quartus/**/.qsys_edit
 Quartus/**/db
 Quartus/**/*.qws
 Quartus/**/*.ver
