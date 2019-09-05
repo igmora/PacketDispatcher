@@ -1,12 +1,22 @@
 ### Quartus ###
 
-/**/output_files
-/**/incremental_db
-/**/.qsys_edit
-/**/db
-/**/*.qws
-/**/*.ver
-/**/*.bak
-/**/*.mif
-/**/greybox_tmp
-/**/c5_pin_model_dump.txt
+# Exclude everything.
+# Eclipse project files will be completely excluded,
+# because they can be easily recreated.
+/**
+
+# Include directories
+# (without this we cannot whitelist files)
+!/**/
+
+# Include source files
+!/*/*.sv
+!/*/*.v
+!/*/*.vhd
+
+# Include project files
+!/*/*.qsf
+!/*/*.qpf
+
+# Include gitignore
+!.gitignore
