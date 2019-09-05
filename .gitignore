@@ -1,8 +1,3 @@
-
-# Created by https://www.gitignore.io/api/modelsim,alteraquartusii
-# Edit at https://www.gitignore.io/?templates=modelsim,alteraquartusii
-
-
 ### AlteraQuartusII ###
 Quartus/**/output_files
 Quartus/**/incremental_db
@@ -15,9 +10,10 @@ Quartus/**/*.mif
 Quartus/**/greybox_tmp
 Quartus/**/c5_pin_model_dump.txt
 
+
+
 ### ModelSim ###
 ModelSim/**/work
 ModelSim/**/*.mti
 ModelSim/**/*.wlf
 ModelSim/**/*.bak
-
