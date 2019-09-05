@@ -1,0 +1,12 @@
+### Quartus ###
+
+/**/output_files
+/**/incremental_db
+/**/.qsys_edit
+/**/db
+/**/*.qws
+/**/*.ver
+/**/*.bak
+/**/*.mif
+/**/greybox_tmp
+/**/c5_pin_model_dump.txt
