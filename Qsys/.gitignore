@@ -1,0 +1,17 @@
+### Qsys ###
+
+# Exclude everything
+/**
+
+# Include directories
+# (without this we cannot whitelist files)
+!/**/
+
+# Include files with diagrams
+!/**/*.qsys
+
+# Backup files are garbage files
+/**/*.BAK.qsys
+
+# Include gitignore
+!.gitignore

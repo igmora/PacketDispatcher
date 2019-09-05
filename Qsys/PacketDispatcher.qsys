@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system name="$${FILENAME}">
+ <component
+   name="$${FILENAME}"
+   displayName="$${FILENAME}"
+   version="1.0"
+   description=""
+   tags="INTERNAL_COMPONENT=false"
+   categories="System" />
+ <parameter name="bonusData"><![CDATA[bonusData 
+{
+   element PacketDispatcher
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
+      }
+   }
+   element PacketDispatcher
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
+      }
+   }
+   element clock_source
+   {
+      datum _sortIndex
+      {
+         value = "0";
+         type = "int";
+      }
+   }
+   element header_queue
+   {
+      datum _sortIndex
+      {
+         value = "4";
+         type = "int";
+      }
+   }
+   element header_queue.in
+   {
+      datum baseAddress
+      {
+         value = "0";
+         type = "String";
+      }
+   }
+   element header_queue.out
+   {
+      datum baseAddress
+      {
+         value = "4";
+         type = "String";
+      }
+   }
+   element header_queue.out_csr
+   {
+      datum baseAddress
+      {
+         value = "32";
+         type = "String";
+      }
+   }
+   element header_queue_mutex
+   {
+      datum _sortIndex
+      {
+         value = "5";
+         type = "int";
+      }
+   }
+   element header_queue_mutex.s1
+   {
+      datum baseAddress
+      {
+         value = "8";
+         type = "String";
+      }
+   }
+   element jtag
+   {
+      datum _sortIndex
+      {
+         value = "1";
+         type = "int";
+      }
+   }
+   element processor_0
+   {
+      datum _sortIndex
+      {
+         value = "2";
+         type = "int";
+      }
+   }
+   element processor_1
+   {
+      datum _sortIndex
+      {
+         value = "3";
+         type = "int";
+      }
+   }
+}
+]]></parameter>
+ <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
+ <parameter name="device" value="5CSEBA6U23I7" />
+ <parameter name="deviceFamily" value="Cyclone V" />
+ <parameter name="deviceSpeedGrade" value="7" />
+ <parameter name="fabricMode" value="QSYS" />
+ <parameter name="generateLegacySim" value="false" />
+ <parameter name="generationId" value="0" />
+ <parameter name="globalResetBus" value="false" />
+ <parameter name="hdlLanguage" value="VERILOG" />
+ <parameter name="hideFromIPCatalog" value="false" />
+ <parameter name="lockedInterfaceDefinition" value="" />
+ <parameter name="maxAdditionalLatency" value="1" />
+ <parameter name="projectName" value="" />
+ <parameter name="sopcBorderPoints" value="false" />
+ <parameter name="systemHash" value="0" />
+ <parameter name="testBenchDutName" value="" />
+ <parameter name="timeStamp" value="0" />
+ <parameter name="useTestBenchNamingPattern" value="false" />
+ <instanceScript></instanceScript>
+ <interface name="clock" internal="clock_source.clk_in" type="clock" dir="end" />
+ <interface
+   name="reset"
+   internal="clock_source.clk_in_reset"
+   type="reset"
+   dir="end" />
+ <module name="clock_source" kind="clock_source" version="18.1" enabled="1">
+  <parameter name="clockFrequency" value="100000000" />
+  <parameter name="clockFrequencyKnown" value="true" />
+  <parameter name="inputClockFrequency" value="0" />
+  <parameter name="resetSynchronousEdges" value="NONE" />
+ </module>
+ <module
+   name="header_queue"
+   kind="altera_avalon_fifo"
+   version="18.1"
+   enabled="1">
+  <parameter name="avalonMMAvalonMMDataWidth" value="32" />
+  <parameter name="avalonMMAvalonSTDataWidth" value="32" />
+  <parameter name="bitsPerSymbol" value="16" />
+  <parameter name="channelWidth" value="8" />
+  <parameter name="deviceFamilyString" value="Cyclone V" />
+  <parameter name="errorWidth" value="8" />
+  <parameter name="fifoDepth" value="64" />
+  <parameter name="fifoInputInterfaceOptions" value="AVALONMM_WRITE" />
+  <parameter name="fifoOutputInterfaceOptions" value="AVALONMM_READ" />
+  <parameter name="showHiddenFeatures" value="false" />
+  <parameter name="singleClockMode" value="false" />
+  <parameter name="singleResetMode" value="false" />
+  <parameter name="symbolsPerBeat" value="2" />
+  <parameter name="useBackpressure" value="true" />
+  <parameter name="useIRQ" value="false" />
+  <parameter name="usePacket" value="true" />
+  <parameter name="useReadControl" value="true" />
+  <parameter name="useRegister" value="false" />
+  <parameter name="useWriteControl" value="false" />
+ </module>
+ <module
+   name="header_queue_mutex"
+   kind="altera_avalon_mutex"
+   version="18.1"
+   enabled="1">
+  <parameter name="initialOwner" value="0" />
+  <parameter name="initialValue" value="0" />
+ </module>
+ <module
+   name="jtag"
+   kind="altera_jtag_avalon_master"
+   version="18.1"
+   enabled="1">
+  <parameter name="AUTO_DEVICE" value="5CSEBA6U23I7" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="7" />
+  <parameter name="COMPONENT_CLOCK" value="0" />
+  <parameter name="FAST_VER" value="0" />
+  <parameter name="FIFO_DEPTHS" value="2" />
+  <parameter name="PLI_PORT" value="50000" />
+  <parameter name="USE_PLI" value="0" />
+ </module>
+ <module
+   name="processor_0"
+   kind="nios_infrastructure"
+   version="1.0"
+   enabled="1">
+  <parameter name="AUTO_CLOCK_CLOCK_DOMAIN" value="1" />
+  <parameter name="AUTO_CLOCK_CLOCK_RATE" value="100000000" />
+  <parameter name="AUTO_CLOCK_RESET_DOMAIN" value="1" />
+  <parameter name="AUTO_DEVICE" value="5CSEBA6U23I7" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="7" />
+  <parameter name="AUTO_GENERATION_ID" value="0" />
+  <parameter name="AUTO_NIOS_DATA_ADDRESS_MAP"><![CDATA[<address-map><slave name='header_queue.in' start='0x0' end='0x4' /><slave name='header_queue.out' start='0x4' end='0x8' /><slave name='header_queue_mutex.s1' start='0x8' end='0x10' /><slave name='header_queue.out_csr' start='0x20' end='0x40' /></address-map>]]></parameter>
+  <parameter name="AUTO_NIOS_DATA_ADDRESS_WIDTH" value="AddressWidth = 6" />
+  <parameter name="AUTO_UNIQUE_ID">$${FILENAME}_processor_0</parameter>
+ </module>
+ <module
+   name="processor_1"
+   kind="nios_infrastructure"
+   version="1.0"
+   enabled="1">
+  <parameter name="AUTO_CLOCK_CLOCK_DOMAIN" value="1" />
+  <parameter name="AUTO_CLOCK_CLOCK_RATE" value="100000000" />
+  <parameter name="AUTO_CLOCK_RESET_DOMAIN" value="1" />
+  <parameter name="AUTO_DEVICE" value="5CSEBA6U23I7" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="7" />
+  <parameter name="AUTO_GENERATION_ID" value="0" />
+  <parameter name="AUTO_NIOS_DATA_ADDRESS_MAP"><![CDATA[<address-map><slave name='header_queue.in' start='0x0' end='0x4' /><slave name='header_queue.out' start='0x4' end='0x8' /><slave name='header_queue_mutex.s1' start='0x8' end='0x10' /><slave name='header_queue.out_csr' start='0x20' end='0x40' /></address-map>]]></parameter>
+  <parameter name="AUTO_NIOS_DATA_ADDRESS_WIDTH" value="AddressWidth = 6" />
+  <parameter name="AUTO_UNIQUE_ID">$${FILENAME}_processor_1</parameter>
+ </module>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="jtag.master"
+   end="header_queue.in">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="processor_1.nios_data"
+   end="header_queue.in">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="processor_0.nios_data"
+   end="header_queue.in">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="processor_1.nios_data"
+   end="header_queue.out">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0004" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="processor_0.nios_data"
+   end="header_queue.out">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0004" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="processor_0.nios_data"
+   end="header_queue.out_csr">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0020" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="processor_1.nios_data"
+   end="header_queue.out_csr">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0020" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="processor_1.nios_data"
+   end="header_queue_mutex.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0008" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="processor_0.nios_data"
+   end="header_queue_mutex.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0008" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection kind="clock" version="18.1" start="clock_source.clk" end="jtag.clk" />
+ <connection
+   kind="clock"
+   version="18.1"
+   start="clock_source.clk"
+   end="header_queue_mutex.clk" />
+ <connection
+   kind="clock"
+   version="18.1"
+   start="clock_source.clk"
+   end="header_queue.clk_in" />
+ <connection
+   kind="clock"
+   version="18.1"
+   start="clock_source.clk"
+   end="header_queue.clk_out" />
+ <connection
+   kind="clock"
+   version="18.1"
+   start="clock_source.clk"
+   end="processor_0.clock" />
+ <connection
+   kind="clock"
+   version="18.1"
+   start="clock_source.clk"
+   end="processor_1.clock" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clock_source.clk_reset"
+   end="jtag.clk_reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clock_source.clk_reset"
+   end="processor_1.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clock_source.clk_reset"
+   end="processor_0.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clock_source.clk_reset"
+   end="header_queue_mutex.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clock_source.clk_reset"
+   end="header_queue.reset_in" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clock_source.clk_reset"
+   end="header_queue.reset_out" />
+ <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
+ <interconnectRequirement for="$system" name="qsys_mm.enableEccProtection" value="FALSE" />
+ <interconnectRequirement for="$system" name="qsys_mm.insertDefaultSlave" value="FALSE" />
+ <interconnectRequirement for="$system" name="qsys_mm.maxAdditionalLatency" value="1" />
+</system>
